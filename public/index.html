@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="referer" content="never" />
+		<meta name="renderer" content="webkit" />
+		<meta name="viewport" content />
+		<link rel="icon" href="<%= BASE_URL %>favicon.ico" />
+		<title>COOL-ADMIN</title>
+		<% for (var i in htmlWebpackPlugin.options.cdn && htmlWebpackPlugin.options.cdn.css) { %>
+		<link href="<%= htmlWebpackPlugin.options.cdn.css[i] %>" rel="stylesheet" />
+		<% } %>
+		<style>
+			html,
+			body,
+			#app {
+				height: 100%;
+				margin: 0;
+				padding: 0;
+			}
+
+			.once {
+				background-color: #303133;
+				height: 100%;
+				display: flex;
+				flex-direction: column;
+			}
+
+			.once .container {
+				user-select: none;
+				width: 100%;
+				flex-grow: 1;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				flex-direction: column;
+			}
+
+			.once .footer {
+				text-align: center;
+				padding: 10px 0;
+			}
+
+			.once .footer a {
+				font-size: 12px;
+				color: #ababab;
+				text-decoration: none;
+			}
+
+			.once .title {
+				color: #fff;
+				font-size: 14px;
+				margin-bottom: 10px;
+			}
+
+			.once .sub-title {
+				color: #ababab;
+				font-size: 12px;
+			}
+		</style>
+	</head>
+	<body>
+		<noscript>
+			<strong
+				>We're sorry but cool-admin doesn't work properly without JavaScript enabled. Please
+				enable it to continue.</strong
+			>
+		</noscript>
+		<div id="app">
+			<div class="once">
+				<div class="container">
+					<div class="title">
+						正在加载资源
+					</div>
+					<div class="sub-title">
+						初次加载资源可能需要较多时间 请耐心等待
+					</div>
+				</div>
+
+				<div class="footer">
+					<a href="https://www.cool-admin.com/" target="_blank">
+						https://www.cool-admin.com/
+					</a>
+				</div>
+			</div>
+		</div>
+
+		<% for (var i in htmlWebpackPlugin.options.cdn && htmlWebpackPlugin.options.cdn.js) { %>
+		<script src="<%= htmlWebpackPlugin.options.cdn.js[i] %>"></script>
+		<% } %>
+	</body>
+</html>
