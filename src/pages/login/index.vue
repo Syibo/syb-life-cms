@@ -15,7 +15,8 @@
 
 		<div class="tmp2">
 			<div class="title">
-				<icon-svg name="logo-t-lr"></icon-svg>
+				<!-- <icon-svg name="logo-t-lr"></icon-svg> -->
+				shenyibi.life-cms
 			</div>
 
 			<el-form ref="form" class="form" size="medium" :disabled="saving">

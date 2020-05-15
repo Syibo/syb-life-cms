@@ -1,7 +1,7 @@
 <template>
 	<div class="scope-slider">
 		<div class="logo">
-			<a href="https://cool-admin.com/">
+			<a href="#">
 				<icon-svg class="lr" name="logo-lr" v-if="!menuCollapse"></icon-svg>
 				<icon-svg class="z" name="logo" v-else></icon-svg>
 			</a>

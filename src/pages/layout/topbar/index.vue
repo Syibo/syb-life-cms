@@ -13,9 +13,9 @@
 
 		<div class="flex1"></div>
 
-		<ul class="tools">
+		<!-- <ul class="tools">
 			<li-notice></li-notice>
-		</ul>
+		</ul> -->
 
 		<div class="user" v-if="userInfo">
 			<el-dropdown trigger="click" :hide-on-click="false" @command="onCommand">
@@ -36,13 +36,8 @@
 <script>
 import { mapMutations, mapGetters } from 'vuex';
 import { href, firstMenu } from '@/cool/utils/index';
-import LiNotice from './tools/notice';
 
 export default {
-	components: {
-		LiNotice
-	},
-
 	data() {
 		return {
 			index: '0'

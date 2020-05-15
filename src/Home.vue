@@ -1,14 +1,5 @@
 <template>
 	<div class="home">
-		<div class="tips">
-			<span>就像你看到的一样？查看我们的高级版本了解更多信息。</span>
-			<span class="flex1"></span>
-			<el-button size="mini" type="success" round class="doc-btn" @click="toDocs"
-				>查看文档</el-button
-			>
-			<i class="el-icon-close"></i>
-		</div>
-
 		<el-row :gutter="20" class="card-statistics">
 			<el-col :md="12" :xl="6">
 				<div class="card block">
@@ -18,8 +9,8 @@
 						</div>
 
 						<div class="right">
-							<p>总收入</p>
-							<p>￥15,650</p>
+							<p>文章</p>
+							<p>97</p>
 						</div>
 					</div>
 
@@ -38,48 +29,8 @@
 						</div>
 
 						<div class="right">
-							<p>订单</p>
-							<p>1822</p>
-						</div>
-					</div>
-
-					<div class="desc">
-						<i class="el-icon-warning"></i>
-						<span>Product-wise sales</span>
-					</div>
-				</div>
-			</el-col>
-
-			<el-col :md="12" :xl="6">
-				<div class="card block">
-					<div class="val">
-						<div class="left">
-							<i class="el-icon-s-marketing"></i>
-						</div>
-
-						<div class="right">
-							<p>销售</p>
-							<p>312</p>
-						</div>
-					</div>
-
-					<div class="desc">
-						<i class="el-icon-warning"></i>
-						<span>Weekly Sales</span>
-					</div>
-				</div>
-			</el-col>
-
-			<el-col :md="12" :xl="6">
-				<div class="card block">
-					<div class="val">
-						<div class="left">
-							<i class="el-icon-s-custom"></i>
-						</div>
-
-						<div class="right">
-							<p>用户</p>
-							<p>2246</p>
+							<p>笔记</p>
+							<p>18</p>
 						</div>
 					</div>
 
@@ -99,7 +50,7 @@
 			</div>
 		</div>
 
-		<div class="card card-plan">
+		<!-- <div class="card card-plan">
 			<p class="card-title">计划</p>
 
 			<div class="card-body">
@@ -125,7 +76,7 @@
 					</template>
 				</cl-crud>
 			</div>
-		</div>
+		</div> -->
 	</div>
 </template>
 
