@@ -16,7 +16,7 @@ export default {
 						{
 							prop: 'title',
 							label: '文章标题',
-							span: 12,
+							span: 24,
 							component: {
 								name: 'el-input',
 								attrs: {
@@ -31,7 +31,7 @@ export default {
 						{
 							prop: 'link',
 							label: '链接',
-							span: 12,
+							span: 24,
 							component: {
 								name: 'el-input',
 								attrs: {
@@ -46,7 +46,7 @@ export default {
 						{
 							prop: 'artType',
 							label: '文章类型',
-							span: 12,
+							span: 24,
 							component: {
 								name: 'el-input',
 								attrs: {
