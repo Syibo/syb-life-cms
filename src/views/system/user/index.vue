@@ -1,7 +1,7 @@
 <template>
 	<div class="system-user">
 		<div class="_box">
-			<div class="dept scroller1" :class="[dept.expand ? '_expand' : '_collapse']">
+			<div class="dept scroller1" :class="[dept.expand ? '_collapse' : '_expand']">
 				<div class="label">
 					<div>组织架构</div>
 
@@ -115,17 +115,17 @@
 
 			<div
 				class="icon-arrow"
-				:class="[dept.expand ? '_expand' : '_collapse']"
+				:class="[dept.expand ? '_collapse' : '_expand']"
 				@click="deptExpand"
 			>
-				<i class="el-icon-arrow-left" v-if="dept.expand"></i>
-				<i class="el-icon-arrow-right" v-else></i>
+				<i class="el-icon-arrow-right" v-if="dept.expand"></i>
+				<i class="el-icon-arrow-left" v-else></i>
 			</div>
 		</div>
 
 		<cl-form ref="cl-form">
 			<!-- 部门转移 -->
-			<template #slot-move-dept="{ scope }">
+			<template #slot-move-dept="{}">
 				<div class="system-user-move-dept">
 					<el-tree
 						:data="dept.list"

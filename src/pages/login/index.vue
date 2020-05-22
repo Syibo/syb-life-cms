@@ -16,7 +16,7 @@
 		<div class="tmp2">
 			<div class="title">
 				<!-- <icon-svg name="logo-t-lr"></icon-svg> -->
-				shenyibi.life-cms
+				shenyibo.life-cms
 			</div>
 
 			<el-form ref="form" class="form" size="medium" :disabled="saving">
@@ -122,6 +122,7 @@ export default {
 			position: absolute;
 			left: 25px;
 			top: 10px;
+			color: white;
 			z-index: 1;
 			font-size: 20px;
 			letter-spacing: 1px;

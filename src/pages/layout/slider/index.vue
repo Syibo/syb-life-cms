@@ -2,7 +2,13 @@
 	<div class="scope-slider">
 		<div class="logo">
 			<a href="#">
-				<icon-svg class="lr" name="logo-lr" v-if="!menuCollapse"></icon-svg>
+				<img
+					v-if="!menuCollapse"
+					src="../../../assets/images/logo.jpg"
+					width="130"
+					height="50"
+					style="margin-top: 15px"
+				/>
 				<icon-svg class="z" name="logo" v-else></icon-svg>
 			</a>
 		</div>

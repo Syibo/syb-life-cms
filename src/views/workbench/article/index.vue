@@ -48,14 +48,14 @@ export default {
 							label: '文章类型',
 							span: 24,
 							component: {
-								name: 'el-input',
+								name: 'cl-article-select',
 								attrs: {
-									placeholder: '请输入链接'
+									placeholder: '请输入文章类型'
 								}
 							},
 							rules: {
 								required: true,
-								message: '链接不能为空'
+								message: '文章类型不能为空'
 							}
 						}
 					]
