@@ -1,16 +1,14 @@
 <template>
 	<div class="scope-slider">
-		<div class="logo">
-			<a href="#">
-				<img
-					v-if="!menuCollapse"
-					src="../../../assets/images/logo.jpg"
-					width="130"
-					height="50"
-					style="margin-top: 15px"
-				/>
-				<icon-svg class="z" name="logo" v-else></icon-svg>
-			</a>
+		<div class="logo" @click="goHome">
+			<img
+				v-if="!menuCollapse"
+				src="../../../assets/images/logo.jpg"
+				width="130"
+				height="50"
+				style="margin-top: 15px"
+			/>
+			<icon-svg class="z" name="logo" v-else></icon-svg>
 		</div>
 
 		<div class="user" v-if="userInfo && !menuCollapse">
@@ -18,7 +16,6 @@
 
 			<div class="det">
 				<p class="name">{{ userInfo.name }}</p>
-				<p class="post">部门：{{ userInfo.departmentName || '无' }}</p>
 			</div>
 		</div>
 
@@ -111,7 +108,10 @@ export default {
 	},
 
 	methods: {
-		...mapMutations(['COLLAPSE_MENU'])
+		...mapMutations(['COLLAPSE_MENU']),
+		goHome() {
+			this.$router.push({ path: '/' });
+		}
 	}
 };
 </script>
@@ -146,6 +146,10 @@ export default {
 		}
 	}
 
+	.logo:hover {
+		cursor: pointer;
+	}
+
 	.user {
 		display: flex;
 		height: 40px;
@@ -161,6 +165,9 @@ export default {
 
 		.det {
 			margin-left: 15px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
 		}
 
 		p {

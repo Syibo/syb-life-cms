@@ -59,6 +59,7 @@
 				</el-form-item>
 
 				<el-button class="submit-btn" @click="next" :saving="saving">登录</el-button>
+				<p class="info">测试账号 test 123456 (无任何权限)</p>
 			</el-form>
 		</div>
 	</div>
@@ -174,6 +175,11 @@ export default {
 				letter-spacing: 2px;
 				cursor: pointer;
 				margin-top: 20px;
+			}
+			.info {
+				margin-top: 24px;
+				color: white;
+				font-size: 12px;
 			}
 		}
 	}

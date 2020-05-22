@@ -8,9 +8,6 @@
 		<meta name="viewport" content />
 		<link rel="icon" href="<%= BASE_URL %>favicon.ico" />
 		<title>shenyibo.life-cms</title>
-		<% for (var i in htmlWebpackPlugin.options.cdn && htmlWebpackPlugin.options.cdn.css) { %>
-		<link href="<%= htmlWebpackPlugin.options.cdn.css[i] %>" rel="stylesheet" />
-		<% } %>
 		<style>
 			html,
 			body,
@@ -61,33 +58,17 @@
 		</style>
 	</head>
 	<body>
-		<noscript>
-			<strong
-				>We're sorry but cool-admin doesn't work properly without JavaScript enabled. Please
-				enable it to continue.</strong
-			>
-		</noscript>
 		<div id="app">
 			<div class="once">
 				<div class="container">
 					<div class="title">
-						正在加载资源
+						正在加载资源...
 					</div>
 					<div class="sub-title">
 						初次加载资源可能需要较多时间 请耐心等待
 					</div>
 				</div>
-
-				<div class="footer">
-					<a href="https://www.cool-admin.com/" target="_blank">
-						https://www.cool-admin.com/
-					</a>
-				</div>
 			</div>
 		</div>
-
-		<% for (var i in htmlWebpackPlugin.options.cdn && htmlWebpackPlugin.options.cdn.js) { %>
-		<script src="<%= htmlWebpackPlugin.options.cdn.js[i] %>"></script>
-		<% } %>
 	</body>
 </html>

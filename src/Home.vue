@@ -140,10 +140,6 @@ export default {
 	},
 
 	methods: {
-		toDocs() {
-			window.open('https://docs.cool-admin.com/#/');
-		},
-
 		onCrudLoad({ ctx, app }) {
 			ctx({
 				service: this.$service.test,
