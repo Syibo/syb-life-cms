@@ -1,5 +1,16 @@
 <template>
-	<cl-crud @load="onLoad"></cl-crud>
+	<cl-crud @load="onLoad">
+		<template #table-column-picture="{scope}">
+			<el-image
+				:src="scope.row.picture"
+				:preview-src-list="getArrPic(scope.row.picture)"
+				:style="{
+					height: '60px',
+					width: '60px'
+				}"
+			></el-image>
+		</template>
+	</cl-crud>
 </template>
 
 <script>
@@ -85,6 +96,11 @@ export default {
 				.done();
 
 			app.refresh();
+		},
+		getArrPic(pic) {
+			const arr = [];
+			arr.push(pic);
+			return arr;
 		}
 	}
 };
