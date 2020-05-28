@@ -40,6 +40,46 @@
 					</div>
 				</div>
 			</el-col>
+
+			<el-col :md="12" :xl="6">
+				<div class="card block">
+					<div class="val">
+						<div class="left">
+							<i class="el-icon-s-flag"></i>
+						</div>
+
+						<div class="right">
+							<p>美食</p>
+							<p>18</p>
+						</div>
+					</div>
+
+					<div class="desc">
+						<i class="el-icon-warning"></i>
+						<span>Product-wise sales</span>
+					</div>
+				</div>
+			</el-col>
+
+			<el-col :md="12" :xl="6">
+				<div class="card block">
+					<div class="val">
+						<div class="left">
+							<i class="el-icon-s-flag"></i>
+						</div>
+
+						<div class="right">
+							<p>音乐</p>
+							<p>18</p>
+						</div>
+					</div>
+
+					<div class="desc">
+						<i class="el-icon-warning"></i>
+						<span>Product-wise sales</span>
+					</div>
+				</div>
+			</el-col>
 		</el-row>
 
 		<div class="card card-visitor">
