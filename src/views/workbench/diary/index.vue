@@ -1,5 +1,16 @@
 <template>
 	<cl-crud @load="onLoad">
+		<template #table-column-picture="{scope}">
+			<el-image
+				:src="scope.row.picture"
+				:preview-src-list="getArrPic(scope.row.picture)"
+				:style="{
+					height: '60px',
+					width: '60px'
+				}"
+			></el-image>
+		</template>
+
 		<template #slot-content="{ scope }">
 			<div class="editor" v-for="(item, index) in tab.list" :key="index">
 				<component :is="item.component" height="300px" v-model="scope.content"></component>
@@ -37,7 +48,7 @@ export default {
 						{
 							prop: 'title',
 							label: '日记标题',
-							span: 24,
+							span: 12,
 							component: {
 								name: 'el-input',
 								attrs: {
@@ -52,7 +63,7 @@ export default {
 						{
 							prop: 'place',
 							label: '地址',
-							span: 24,
+							span: 12,
 							component: {
 								name: 'el-input',
 								attrs: {
@@ -69,14 +80,7 @@ export default {
 							label: '图片',
 							span: 24,
 							component: {
-								name: 'cl-upload',
-								attrs: {
-									placeholder: '请输入图片'
-								}
-							},
-							rules: {
-								required: true,
-								message: '图片不能为空'
+								name: 'cl-upload'
 							}
 						},
 						{
@@ -148,6 +152,11 @@ export default {
 				.done();
 
 			app.refresh();
+		},
+		getArrPic(pic) {
+			const arr = [];
+			arr.push(pic);
+			return arr;
 		}
 	}
 };

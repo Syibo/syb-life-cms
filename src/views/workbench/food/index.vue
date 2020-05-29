@@ -1,5 +1,16 @@
 <template>
 	<cl-crud @load="onLoad">
+		<template #table-column-picture="{scope}">
+			<el-image
+				:src="scope.row.picture"
+				:preview-src-list="getArrPic(scope.row.picture)"
+				:style="{
+					height: '60px',
+					width: '60px'
+				}"
+			></el-image>
+		</template>
+
 		<template #slot-content="{ scope }">
 			<div class="editor" v-for="(item, index) in tab.list" :key="index">
 				<component :is="item.component" height="300px" v-model="scope.content"></component>
@@ -49,6 +60,14 @@ export default {
 							}
 						},
 						{
+							prop: 'picture',
+							label: '图片',
+							span: 24,
+							component: {
+								name: 'cl-upload'
+							}
+						},
+						{
 							prop: 'content',
 							label: '内容',
 							component: {
@@ -68,7 +87,14 @@ export default {
 							prop: 'title',
 							label: '标题',
 							align: 'center',
-							minWidth: '200',
+							minWidth: '100',
+							'show-overflow-tooltip': true
+						},
+						{
+							prop: 'picture',
+							label: '图片',
+							align: 'center',
+							minWidth: '100',
 							'show-overflow-tooltip': true
 						},
 						{
@@ -101,6 +127,11 @@ export default {
 				.done();
 
 			app.refresh();
+		},
+		getArrPic(pic) {
+			const arr = [];
+			arr.push(pic);
+			return arr;
 		}
 	}
 };
