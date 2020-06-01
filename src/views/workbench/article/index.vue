@@ -1,9 +1,29 @@
 <template>
-	<cl-crud @load="onLoad"> </cl-crud>
+	<cl-crud @load="onLoad">
+		<template #slot-content="{ scope }">
+			<div class="editor" v-for="(item, index) in tab.list" :key="index">
+				<component :is="item.component" height="300px" v-model="scope.content"></component>
+			</div>
+		</template>
+	</cl-crud>
 </template>
 
 <script>
 export default {
+	data() {
+		return {
+			crud: null,
+			tab: {
+				list: [
+					{
+						label: '切换代码编辑器',
+						to: 0,
+						component: 'cl-editor-quill'
+					}
+				]
+			}
+		};
+	},
 	methods: {
 		onLoad({ ctx, app }) {
 			ctx.service(this.$service.web.article)
@@ -37,10 +57,6 @@ export default {
 								attrs: {
 									placeholder: '请输入链接'
 								}
-							},
-							rules: {
-								required: true,
-								message: '链接不能为空'
 							}
 						},
 						{
@@ -56,6 +72,13 @@ export default {
 							rules: {
 								required: true,
 								message: '文章类型不能为空'
+							}
+						},
+						{
+							prop: 'content',
+							label: '内容',
+							component: {
+								name: 'slot-content'
 							}
 						}
 					]
@@ -83,6 +106,13 @@ export default {
 						{
 							prop: 'link',
 							label: '链接',
+							align: 'center',
+							minWidth: '200',
+							'show-overflow-tooltip': true
+						},
+						{
+							prop: 'content',
+							label: '内容',
 							align: 'center',
 							minWidth: '200',
 							'show-overflow-tooltip': true
