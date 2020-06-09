@@ -2,7 +2,8 @@
 	<cl-crud @load="onLoad">
 		<template #table-column-picture="{scope}">
 			<el-image
-				:src="scope.row.picture"
+				v-if="scope.row.picture"
+				:src="scope.row.picture.split(',')[0]"
 				:preview-src-list="getArrPic(scope.row.picture)"
 				:style="{
 					height: '60px',
@@ -69,10 +70,6 @@ export default {
 								attrs: {
 									placeholder: '请输入地址'
 								}
-							},
-							rules: {
-								required: true,
-								message: '地址不能为空'
 							}
 						},
 						{
@@ -80,7 +77,39 @@ export default {
 							label: '图片',
 							span: 24,
 							component: {
-								name: 'cl-upload'
+								name: 'cl-upload',
+								props: {
+									props: {
+										multiple: true,
+										'multiple-limit': 9
+									}
+								}
+							}
+						},
+						{
+							prop: 'type',
+							label: '日记类型',
+							span: 12,
+							component: {
+								name: 'cl-diary-select',
+								attrs: {
+									placeholder: '日记类型'
+								}
+							},
+							rules: {
+								required: true,
+								message: '日记类型'
+							}
+						},
+						{
+							prop: 'link',
+							label: '链接',
+							span: 24,
+							component: {
+								name: 'el-input',
+								attrs: {
+									placeholder: '请输入地址'
+								}
 							}
 						},
 						{
@@ -111,6 +140,20 @@ export default {
 						{
 							prop: 'picture',
 							label: '图片',
+							align: 'center',
+							minWidth: '200',
+							'show-overflow-tooltip': true
+						},
+						{
+							prop: 'type',
+							label: '类型',
+							align: 'center',
+							minWidth: '200',
+							'show-overflow-tooltip': true
+						},
+						{
+							prop: 'link',
+							label: '链接',
 							align: 'center',
 							minWidth: '200',
 							'show-overflow-tooltip': true
@@ -154,8 +197,7 @@ export default {
 			app.refresh();
 		},
 		getArrPic(pic) {
-			const arr = [];
-			arr.push(pic);
+			let arr = pic.split(',');
 			return arr;
 		}
 	}
