@@ -67,7 +67,7 @@ module.exports = {
 				pathRewrite: { '^/dev': '' }
 			},
 			'/pro': {
-				target: 'http://47.107.48.44:7001',
+				target: 'http://139.196.51.218:7001',
 				changeOrigin: true,
 				pathRewrite: { '^/pro': '/api' }
 			}
