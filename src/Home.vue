@@ -1,7 +1,7 @@
 <template>
 	<div class="home">
 		<el-row :gutter="20" class="card-statistics">
-			<el-col :md="12" :xl="6">
+			<el-col :md="12">
 				<div class="card block">
 					<div class="val">
 						<div class="left">
@@ -9,19 +9,19 @@
 						</div>
 
 						<div class="right">
-							<p>文章</p>
-							<p>97</p>
+							<p>文章数</p>
+							<p>{{ artList.length }}</p>
 						</div>
 					</div>
 
 					<div class="desc">
 						<i class="el-icon-warning"></i>
-						<span>25% lower growth</span>
+						<span>article</span>
 					</div>
 				</div>
 			</el-col>
 
-			<el-col :md="12" :xl="6">
+			<el-col :md="12">
 				<div class="card block">
 					<div class="val">
 						<div class="left">
@@ -29,206 +29,189 @@
 						</div>
 
 						<div class="right">
-							<p>笔记</p>
-							<p>18</p>
+							<p>笔记数</p>
+							<p>{{ diaryList.length }}</p>
 						</div>
 					</div>
 
 					<div class="desc">
 						<i class="el-icon-warning"></i>
-						<span>Product-wise sales</span>
-					</div>
-				</div>
-			</el-col>
-
-			<el-col :md="12" :xl="6">
-				<div class="card block">
-					<div class="val">
-						<div class="left">
-							<i class="el-icon-s-flag"></i>
-						</div>
-
-						<div class="right">
-							<p>美食</p>
-							<p>18</p>
-						</div>
-					</div>
-
-					<div class="desc">
-						<i class="el-icon-warning"></i>
-						<span>Product-wise sales</span>
-					</div>
-				</div>
-			</el-col>
-
-			<el-col :md="12" :xl="6">
-				<div class="card block">
-					<div class="val">
-						<div class="left">
-							<i class="el-icon-s-flag"></i>
-						</div>
-
-						<div class="right">
-							<p>音乐</p>
-							<p>18</p>
-						</div>
-					</div>
-
-					<div class="desc">
-						<i class="el-icon-warning"></i>
-						<span>Product-wise sales</span>
+						<span>diary</span>
 					</div>
 				</div>
 			</el-col>
 		</el-row>
 
 		<div class="card card-visitor">
-			<p class="card-title">用户访客</p>
+			<p class="card-title">文章分类</p>
 
 			<div class="card-body">
-				<echart1></echart1>
+				<echart1 :options="optionsLine"></echart1>
 			</div>
 		</div>
 
-		<!-- <div class="card card-plan">
-			<p class="card-title">计划</p>
+		<div class="card card-visitor">
+			<p class="card-title">笔记分类</p>
 
 			<div class="card-body">
-				<cl-crud @load="onCrudLoad">
-					<template #table-column-process="{scope}">
-						<el-progress
-							:show-text="false"
-							:stroke-width="6"
-							:percentage="scope.row.process"
-						></el-progress>
-					</template>
-
-					<template #table-column-price="{scope}">
-						<span>￥{{ scope.row.price }}</span>
-					</template>
-
-					<template #table-column-salesRate="{scope}">
-						<div :class="scope.row.salesStatus == 1 ? 'sales-top' : 'sales-bottom'">
-							<span>{{ scope.row.salesRate }}%</span>
-							<i class="el-icon-bottom" v-if="scope.row.salesStatus"></i>
-							<i class="el-icon-top" v-else></i>
-						</div>
-					</template>
-				</cl-crud>
+				<Echart2 :options="optionsPie"></Echart2>
 			</div>
-		</div> -->
+		</div>
 	</div>
 </template>
 
 <script>
 import Echart1 from '@/components/echarts/1.vue';
+import Echart2 from '@/components/echarts/2.vue';
 
 export default {
 	components: {
-		Echart1
+		Echart1,
+		Echart2
 	},
 
 	data() {
 		return {
-			crud: {
-				service: this.$service.test,
-				table: {
-					columns: [
-						{
-							type: 'index',
-							align: 'center',
-							width: 100
-						},
-						{
-							label: '名字',
-							prop: 'name',
-							align: 'center'
-						},
-						{
-							label: '进展',
-							prop: 'process',
-							align: 'center'
-						},
-						{
-							label: '总量',
-							prop: 'price',
-							align: 'center'
-						},
-						{
-							label: '销售',
-							prop: 'salesRate',
-							align: 'center'
-						},
-						{
-							label: '最后期限',
-							prop: 'endTime',
-							align: 'center'
-						}
-					],
-
-					op: {
-						hidden: true
-					},
-
-					props: {
-						'max-height': '500px'
-					}
-				},
-				layout: [['data-table']]
-			}
+			artList: [],
+			diaryList: [],
+			optionsLine: {},
+			optionsPie: {}
 		};
 	},
 
+	mounted() {
+		this.getArtList();
+		this.getDirayList();
+	},
+
 	methods: {
-		onCrudLoad({ ctx, app }) {
-			ctx({
-				service: this.$service.test,
-				table: {
-					columns: [
-						{
-							type: 'index',
-							align: 'center',
-							width: 100
-						},
-						{
-							label: '名字',
-							prop: 'name',
-							align: 'center'
-						},
-						{
-							label: '进展',
-							prop: 'process',
-							align: 'center'
-						},
-						{
-							label: '总量',
-							prop: 'price',
-							align: 'center'
-						},
-						{
-							label: '销售',
-							prop: 'salesRate',
-							align: 'center'
-						},
-						{
-							label: '最后期限',
-							prop: 'endTime',
-							align: 'center'
-						}
-					],
-
-					op: {
-						visible: false
-					},
-
-					props: {
-						'max-height': '500px'
-					}
+		async getArtList() {
+			this.artList = await this.$service.web.article.list();
+			var na = this.artList.map(item => item.artType);
+			const map = na.reduce((m, x) => m.set(x, (m.get(x) || 0) + 1), new Map());
+			const x = [];
+			const y = [];
+			map.forEach((key, value) => {
+				x.push(value);
+				y.push(key);
+			});
+			this.optionsLine = {
+				tooltip: {
+					trigger: 'axis'
 				},
-				layout: [['data-table']]
-			}).done();
+				xAxis: [
+					{
+						type: 'category',
+						data: x,
+						axisLine: {
+							lineStyle: {
+								color: '#999'
+							}
+						}
+					}
+				],
+				yAxis: [
+					{
+						type: 'value',
+						splitNumber: 4,
+						splitLine: {
+							lineStyle: {
+								type: 'dashed',
+								color: '#DDD'
+							}
+						},
+						axisLine: {
+							show: false,
+							lineStyle: {
+								color: '#333'
+							}
+						},
+						nameTextStyle: {
+							color: '#999'
+						},
+						splitArea: {
+							show: false
+						}
+					}
+				],
+				series: [
+					{
+						type: 'line',
+						data: y,
+						lineStyle: {
+							normal: {
+								width: 8,
+								color: {
+									type: 'linear',
 
-			app.refresh();
+									colorStops: [
+										{
+											offset: 0,
+											color: '#A9F387'
+										},
+										{
+											offset: 1,
+											color: '#48D8BF'
+										}
+									],
+									globalCoord: false
+								},
+								shadowColor: 'rgba(72,216,191, 0.3)',
+								shadowBlur: 10,
+								shadowOffsetY: 20
+							}
+						},
+						itemStyle: {
+							normal: {
+								color: '#fff',
+								borderWidth: 10,
+								borderColor: '#A9F387'
+							}
+						},
+						smooth: true
+					}
+				]
+			};
+		},
+		async getDirayList() {
+			this.diaryList = await this.$service.web.diary.list();
+			var na = this.diaryList.map(item => item.type);
+			const map = na.reduce((m, x) => m.set(x, (m.get(x) || 0) + 1), new Map());
+			const x = [];
+			const y = [];
+			map.forEach((key, value) => {
+				x.push(value);
+				let obj = {
+					name: value,
+					value: key
+				};
+				y.push(obj);
+			});
+			this.optionsPie = {
+				color: ['#37A2DA', '#32C5E9', '#67E0E3', '#9FE6B8', '#FF9D7F', '#E690D1'],
+				legend: {
+					show: true,
+					orient: 'vertical',
+					left: 'right',
+					data: x
+				},
+				series: [
+					{
+						name: '访问来源',
+						type: 'pie',
+						radius: '55%',
+						center: ['50%', '60%'],
+						data: y,
+						emphasis: {
+							itemStyle: {
+								shadowBlur: 10,
+								shadowOffsetX: 0,
+								shadowColor: 'rgba(0, 0, 0, 0.5)'
+							}
+						}
+					}
+				]
+			};
 		}
 	}
 };

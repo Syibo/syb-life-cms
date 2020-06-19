@@ -1,4 +1,4 @@
 import { BaseService, Service } from '@/cool';
 
-@Service('web/cat')
+@Service('web/contact')
 export default class extends BaseService {}

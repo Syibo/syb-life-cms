@@ -1,12 +1,12 @@
 <template>
-	<cl-crud @load="onLoad"> </cl-crud>
+	<cl-crud @load="onLoad"></cl-crud>
 </template>
 
 <script>
 export default {
 	methods: {
 		onLoad({ ctx, app }) {
-			ctx.service(this.$service.web.news)
+			ctx.service(this.$service.web.contact)
 				.set('upsert', {
 					props: {
 						width: '1000px'
@@ -14,18 +14,36 @@ export default {
 
 					items: [
 						{
-							prop: 'title',
-							label: '标题',
+							prop: 'name',
+							label: '留言人',
 							span: 24,
 							component: {
 								name: 'el-input',
 								attrs: {
-									placeholder: '请输入类型名称'
+									placeholder: '留言人'
 								}
-							},
-							rules: {
-								required: true,
-								message: '类型名称不能为空'
+							}
+						},
+						{
+							prop: 'content',
+							label: '内容',
+							span: 24,
+							component: {
+								name: 'el-input',
+								attrs: {
+									placeholder: '内容'
+								}
+							}
+						},
+						{
+							prop: 'contact',
+							label: '联系方式',
+							span: 24,
+							component: {
+								name: 'el-input',
+								attrs: {
+									placeholder: '联系方式'
+								}
 							}
 						}
 					]
@@ -38,8 +56,22 @@ export default {
 							width: 60
 						},
 						{
-							prop: 'title',
-							label: '标题',
+							prop: 'name',
+							label: '留言人',
+							align: 'center',
+							minWidth: '100',
+							'show-overflow-tooltip': true
+						},
+						{
+							prop: 'content',
+							label: '内容',
+							align: 'center',
+							minWidth: '200',
+							'show-overflow-tooltip': true
+						},
+						{
+							prop: 'contact',
+							label: '联系方式',
 							align: 'center',
 							minWidth: '200',
 							'show-overflow-tooltip': true

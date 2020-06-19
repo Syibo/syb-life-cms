@@ -4,7 +4,8 @@
 
 <script>
 import ECharts from 'vue-echarts';
-import 'echarts/lib/chart/line';
+import 'echarts/lib/chart/pie';
+import 'echarts/lib/component/legend';
 
 export default {
 	name: 'echart1',
