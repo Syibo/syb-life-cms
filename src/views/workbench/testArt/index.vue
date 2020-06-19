@@ -1,16 +1,5 @@
 <template>
 	<cl-crud @load="onLoad">
-		<template #table-column-picture="{scope}">
-			<el-image
-				:src="scope.row.picture.split(',')[0]"
-				:preview-src-list="getArrPic(scope.row.picture)"
-				:style="{
-					height: '60px',
-					width: '60px'
-				}"
-			></el-image>
-		</template>
-
 		<template #slot-content="{ scope }">
 			<div class="editor" v-for="(item, index) in tab.list" :key="index">
 				<component :is="item.component" height="300px" v-model="scope.content"></component>
@@ -37,7 +26,7 @@ export default {
 	},
 	methods: {
 		onLoad({ ctx, app }) {
-			ctx.service(this.$service.web.food)
+			ctx.service(this.$service.web.article)
 				.set('upsert', {
 					props: {
 						width: '1000px'
@@ -46,31 +35,43 @@ export default {
 					items: [
 						{
 							prop: 'title',
-							label: '标题',
+							label: '文章标题',
 							span: 24,
 							component: {
 								name: 'el-input',
 								attrs: {
-									placeholder: '请输入类型名称'
+									placeholder: '请输入文章标题'
 								}
 							},
 							rules: {
 								required: true,
-								message: '类型名称不能为空'
+								message: '文章标题不能为空'
 							}
 						},
 						{
-							prop: 'picture',
-							label: '图片',
+							prop: 'link',
+							label: '链接',
 							span: 24,
 							component: {
-								name: 'cl-upload',
-								props: {
-									props: {
-										multiple: true,
-										'multiple-limit': 9
-									}
+								name: 'el-input',
+								attrs: {
+									placeholder: '请输入链接'
 								}
+							}
+						},
+						{
+							prop: 'artType',
+							label: '文章类型',
+							span: 24,
+							component: {
+								name: 'cl-article-select',
+								attrs: {
+									placeholder: '请输入文章类型'
+								}
+							},
+							rules: {
+								required: true,
+								message: '文章类型不能为空'
 							}
 						},
 						{
@@ -90,22 +91,35 @@ export default {
 							width: 60
 						},
 						{
-							prop: 'title',
-							label: '标题',
+							type: 'index',
+							label: '序号',
 							align: 'center',
-							minWidth: '100',
+							width: 60
+						},
+						{
+							prop: 'title',
+							label: '文章标题',
+							align: 'center',
+							minWidth: '200',
 							'show-overflow-tooltip': true
 						},
 						{
-							prop: 'picture',
-							label: '图片',
+							prop: 'link',
+							label: '链接',
 							align: 'center',
-							minWidth: '100',
+							minWidth: '200',
 							'show-overflow-tooltip': true
 						},
 						{
 							prop: 'content',
 							label: '内容',
+							align: 'center',
+							minWidth: '200',
+							'show-overflow-tooltip': true
+						},
+						{
+							prop: 'artType',
+							label: '文章类型',
 							align: 'center',
 							minWidth: '200',
 							'show-overflow-tooltip': true
@@ -133,10 +147,6 @@ export default {
 				.done();
 
 			app.refresh();
-		},
-		getArrPic(pic) {
-			let arr = pic.split(',');
-			return arr;
 		}
 	}
 };

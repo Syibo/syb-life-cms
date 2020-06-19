@@ -9,7 +9,7 @@
 						</div>
 
 						<div class="right">
-							<p>文章数</p>
+							<p>技术类文章</p>
 							<p>{{ artList.length }}</p>
 						</div>
 					</div>
@@ -29,7 +29,7 @@
 						</div>
 
 						<div class="right">
-							<p>笔记数</p>
+							<p>生活类笔记</p>
 							<p>{{ diaryList.length }}</p>
 						</div>
 					</div>

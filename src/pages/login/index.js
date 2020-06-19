@@ -8,7 +8,7 @@ export default {
 	data() {
 		return {
 			form: {
-				username: 'admin',
+				username: 'shenyibo',
 				password: '',
 				captchaId: '',
 				verifyCode: ''
