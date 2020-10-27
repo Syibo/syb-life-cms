@@ -12,13 +12,7 @@ script:
 - npm run build
 
 after_script:
-  - cd ./dist
-  - git init
-  - git config user.name "${U_NAME}"
-  - git config user.email "${U_EMAIL}"
-  - git add .
-  - git commit -m "Travis CI Auto Builder"
-  - git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:deploy
+  - ssh root@139.196.51.218 'cd /usr/local/syb/syb-life-cms/ && git pull && npm install && npm run build'
 branches:
   only:
   - master

@@ -35,7 +35,7 @@ export default {
 					items: [
 						{
 							prop: 'title',
-							label: '文章标题travis',
+							label: '文章标题travis two',
 							span: 24,
 							component: {
 								name: 'el-input',
