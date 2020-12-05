@@ -1,14 +1,28 @@
 <template>
 	<cl-crud @load="onLoad">
 		<template #slot-content="{ scope }">
-			<div class="editor" v-for="(item, index) in tab.list" :key="index">
+			<!-- <div class="editor" v-for="(item, index) in tab.list" :key="index">
 				<component :is="item.component" height="300px" v-model="scope.content"></component>
-			</div>
+			</div> -->
+			<MarkdownPro v-model="scope.content"></MarkdownPro>
+		</template>
+
+		<template #table-column-picture="{scope}">
+			<el-image
+				v-if="scope.row.picture"
+				:src="scope.row.picture.split(',')[0]"
+				:preview-src-list="getArrPic(scope.row.picture)"
+				:style="{
+					height: '60px',
+					width: '60px'
+				}"
+			></el-image>
 		</template>
 	</cl-crud>
 </template>
 
 <script>
+import { MarkdownPro } from 'vue-meditor';
 export default {
 	data() {
 		return {
@@ -24,6 +38,9 @@ export default {
 			}
 		};
 	},
+	components: {
+		MarkdownPro
+	},
 	methods: {
 		onLoad({ ctx, app }) {
 			ctx.service(this.$service.web.article)
@@ -35,7 +52,7 @@ export default {
 					items: [
 						{
 							prop: 'title',
-							label: '文章标题travis four',
+							label: '文章标题',
 							span: 24,
 							component: {
 								name: 'el-input',
@@ -75,6 +92,20 @@ export default {
 							}
 						},
 						{
+							prop: 'picture',
+							label: '图片',
+							span: 24,
+							component: {
+								name: 'cl-upload',
+								props: {
+									props: {
+										multiple: true,
+										'multiple-limit': 9
+									}
+								}
+							}
+						},
+						{
 							prop: 'content',
 							label: '内容',
 							component: {
@@ -106,6 +137,13 @@ export default {
 						{
 							prop: 'link',
 							label: '链接',
+							align: 'center',
+							minWidth: '200',
+							'show-overflow-tooltip': true
+						},
+						{
+							prop: 'picture',
+							label: '图片',
 							align: 'center',
 							minWidth: '200',
 							'show-overflow-tooltip': true
@@ -147,6 +185,10 @@ export default {
 				.done();
 
 			app.refresh();
+		},
+		getArrPic(pic) {
+			let arr = pic.split(',');
+			return arr;
 		}
 	}
 };
