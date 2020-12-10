@@ -13,14 +13,16 @@
 		</template>
 
 		<template #slot-content="{ scope }">
-			<div class="editor" v-for="(item, index) in tab.list" :key="index">
+			<!-- <div class="editor" v-for="(item, index) in tab.list" :key="index">
 				<component :is="item.component" height="300px" v-model="scope.content"></component>
-			</div>
+			</div> -->
+			<MarkdownPro v-model="scope.content"></MarkdownPro>
 		</template>
 	</cl-crud>
 </template>
 
 <script>
+import { MarkdownPro } from 'vue-meditor';
 export default {
 	data() {
 		return {
@@ -35,6 +37,9 @@ export default {
 				]
 			}
 		};
+	},
+	components: {
+		MarkdownPro
 	},
 	methods: {
 		onLoad({ ctx, app }) {
